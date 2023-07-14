@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bit.edu.board.mapper.BoardMapper">
+    
+    <insert id="createBoard" parameterType="bit.edu.board.dto.BoardRegisterDto">
+        INSERT INTO Board(user_no, user_id, board_title, board_content)
+        VALUES(#{userNo}, #{userId}, #{boardTitle} , #{boardContent});
+    </insert>
+
+    <select id="findAllBoards" resultType="bit.edu.board.dto.BoardListDto">
+        SELECT board_no, user_id, board_title, created_at, deleted
+        FROM Board;
+    </select>
+
+    <select id="findBoardByBoardNo" parameterType="int" resultType="bit.edu.board.dto.BoardDetailDto">
+        SELECT board_no, user_no, user_id, board_title, board_content, created_at
+        FROM Board
+        WHERE board_no = #{boardNo} AND deleted = 0;
+    </select>
+
+    <update id="updateBoardByBoardNo" parameterType="bit.edu.board.dto.BoardModifyDto">
+        UPDATE Board
+        SET board_title = #{boardTitle},
+            board_content = #{boardContent},
+            update_at = now()
+        WHERE board_no = #{boardNo}
+    </update>
+
+    <update id="deleteBoardByBoardNo" parameterType="int">
+        UPDATE Board
+        SET deleted = true,
+            deleted_at = now()
+        WHERE board_no = #{boardNo}
+    </update>
+
+
+</mapper>
