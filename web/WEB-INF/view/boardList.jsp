@@ -65,28 +65,5 @@
   <a href="/boards/register">작성하러 가기</a>
 </div>
 
-<div class="pagination">
-  <c:if test="${list.hasPrev}">
-    <a href="./BlmController?cmd=list&offset=${((list.startPage - 1) * 10) - 100}">&lt;</a>
-  </c:if>
-
-  <c:if test="${list.hasNext}">
-    <c:forEach var="page" begin="${list.startPage}" end="${list.startPage + 9}">
-      <a class="${list.pageNum eq page ? 'selectedPage': ''}" href="./BlmController?cmd=list&offset=${(page - 1) * 10}">${page}</a>
-    </c:forEach>
-  </c:if>
-
-  <c:if test="${!list.hasNext}">
-    <c:forEach var="page" begin="${list.startPage}" end="${list.totalPage}">
-      <a class="${list.pageNum eq page ? 'selectedPage': ''}" href="./BlmController?cmd=list&offset=${(page - 1) * 10}">${page}</a>
-    </c:forEach>
-  </c:if>
-
-  <c:if test="${list.hasNext}">
-    <a href="./BlmController?cmd=list&offset=${((list.startPage-1) * 10) + 100}">&gt;</a>
-  </c:if>
-
-</div>
-
 </body>
 </html>

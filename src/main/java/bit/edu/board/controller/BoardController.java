@@ -4,6 +4,7 @@ import bit.edu.board.dto.BoardModifyDto;
 import bit.edu.board.dto.BoardRegisterDto;
 import bit.edu.board.service.BoardService;
 import bit.edu.comment.service.CommentService;
+import bit.edu.recommendation.service.RecommendationService;
 import bit.edu.user.dto.UserDetailsDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,8 @@ public class BoardController {
 
     private final CommentService commentService;
 
+    private final RecommendationService recommendationService;
+
     @GetMapping
     public String boardListForm(Model model) {
         model.addAttribute("boards", boardService.findAllBoards());
@@ -57,6 +60,7 @@ public class BoardController {
                               Model model) {
         model.addAttribute("board", boardService.findBoardByBoardNo(boardNo));
         model.addAttribute("comments", commentService.findAllComment(boardNo));
+        model.addAttribute("like", recommendationService.findLikeCountByBoardNo(boardNo));
         return "/boardDetail";
     }
 

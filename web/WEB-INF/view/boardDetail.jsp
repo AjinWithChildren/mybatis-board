@@ -109,6 +109,19 @@
         form {
             margin: 0;
         }
+
+        .likes {
+            margin-top: 10px;
+        }
+
+        .likes span {
+            font-weight: bold;
+        }
+
+        button {
+            display: block;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -138,7 +151,10 @@
         </c:if>
     </div>
 
-
+    <div class="container">
+        <p class="likes">좋아요: <span id="post-likes">${like}</span></p>
+        <button id="post-like-btn" onclick="createLike()">좋아요</button>
+    </div>
 
     <div class="container">
         <h1>댓글</h1>
@@ -197,6 +213,23 @@
         element.parentNode.parentNode.parentNode.style.display = "none";
     }
 
+    function createLike() {
+        console.log("test");
+        fetch("/likes/${board.boardNo}", {
+            method: "post"
+        })
+            .then(response => {
+                if (response.status >= 400) {
+                    alert("이미 좋아요 누름");
+                    return;
+                }
+
+                if (response.status == 200) {
+                    alert("좋아요!");
+                    location.href = "/books/${board.boardNo}";
+                }
+            })
+    }
 
 </script>
 
