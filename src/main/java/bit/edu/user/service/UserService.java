@@ -2,6 +2,7 @@ package bit.edu.user.service;
 
 import bit.edu.user.dto.UserDetailsDto;
 import bit.edu.user.dto.UserLoginDto;
+import java.util.List;
 
 /**
  * Some description here.
@@ -11,5 +12,5 @@ import bit.edu.user.dto.UserLoginDto;
  **/
 public interface UserService {
 
-    UserDetailsDto loginUser(UserLoginDto userLoginDto);
+    List<UserDetailsDto> loginUser(UserLoginDto userLoginDto);
 }

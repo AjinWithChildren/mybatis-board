@@ -5,6 +5,7 @@ import bit.edu.user.dto.UserLoginDto;
 import bit.edu.user.exception.UserNotFountException;
 import bit.edu.user.mapper.UserMapper;
 import bit.edu.user.service.UserService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +20,15 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
+//    @Override
+//    public UserDetailsDto loginUser(UserLoginDto userLoginDto) {
+//        return userMapper.findUserByUserId(userLoginDto)
+//            .orElseThrow(UserNotFountException::new);
+//    }
+
+
     @Override
-    public UserDetailsDto loginUser(UserLoginDto userLoginDto) {
-        return userMapper.findUserByUserId(userLoginDto)
-            .orElseThrow(UserNotFountException::new);
+    public List<UserDetailsDto> loginUser(UserLoginDto userLoginDto) {
+        return userMapper.findUserByUserId(userLoginDto);
     }
 }

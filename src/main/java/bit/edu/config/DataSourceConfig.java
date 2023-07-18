@@ -1,8 +1,10 @@
 package bit.edu.config;
 
+import bit.edu.auth.Auth;
 import java.io.IOException;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.ibatis.type.TypeHandler;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
@@ -60,6 +62,9 @@ public class DataSourceConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource());
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/**/mapper/*.xml"));
+        sqlSessionFactoryBean.setTypeHandlers(new TypeHandler[]{
+            new Auth.TypeHandler()
+        });
         return sqlSessionFactoryBean;
     }
 

@@ -51,13 +51,41 @@ CREATE TABLE `Dislike` (
                            `board_no`	int	NOT NULL
 );
 
+DROP TABLE IF EXISTS `Auth`;
+
+CREATE TABLE `Auth`
+(
+    `auth_no`   int         NOT NULL primary key auto_increment,
+    `auth_name` varchar(50) NOT NULL unique key
+);
+
 DROP TABLE IF EXISTS `User_Auth`;
 
-CREATE TABLE `User_Auth` (
-                             `user_auth_no`	int	NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                             `user_no`	int	NOT NULL,
-                             `user_auth_name`	varchar(50)	NOT NULL
+CREATE TABLE `User_Auth`
+(
+    `auth_no` int NOT NULL,
+    `user_no` int NOT NULL
 );
+
+ALTER TABLE bipa.`User_Auth`
+    ADD PRIMARY KEY (
+                     `auth_no`, `user_no`);
+
+ALTER TABLE `User_Auth`
+    ADD CONSTRAINT `FK_Auth_TO_User_Auth_1` FOREIGN KEY (
+                                                         `auth_no`
+        )
+        REFERENCES `Auth` (
+                           `auth_no`
+            );
+
+ALTER TABLE `User_Auth`
+    ADD CONSTRAINT `FK_User_TO_User_Auth_1` FOREIGN KEY (
+                                                         `user_no`
+        )
+        REFERENCES `User` (
+                           `user_no`
+            );
 
 ALTER TABLE `User` ADD CONSTRAINT `PK_USER` PRIMARY KEY (
                                                          `user_no`

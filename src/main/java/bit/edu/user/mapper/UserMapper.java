@@ -2,6 +2,7 @@ package bit.edu.user.mapper;
 
 import bit.edu.user.dto.UserDetailsDto;
 import bit.edu.user.dto.UserLoginDto;
+import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,5 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserMapper {
 
-    Optional<UserDetailsDto> findUserByUserId(UserLoginDto userLoginDto);
+    List<UserDetailsDto> findUserByUserId(UserLoginDto userLoginDto);
 }

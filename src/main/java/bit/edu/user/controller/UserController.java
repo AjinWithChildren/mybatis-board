@@ -3,6 +3,7 @@ package bit.edu.user.controller;
 import bit.edu.user.dto.UserDetailsDto;
 import bit.edu.user.dto.UserLoginDto;
 import bit.edu.user.service.UserService;
+import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,7 +39,11 @@ public class UserController {
 
         log.info("userLoginDto {}", userLoginDto);
 
-        UserDetailsDto userDetailsDto = userService.loginUser(userLoginDto);
+        List<UserDetailsDto> userDetailsDto = userService.loginUser(userLoginDto);
+
+
+
+        log.info("userDetailsDto {}", userDetailsDto);
         HttpSession session = request.getSession(true);
         session.setAttribute("userDetails", userDetailsDto);
 

@@ -5,11 +5,12 @@
 
 <mapper namespace="bit.edu.user.mapper.UserMapper">
     <select id="findUserByUserId" parameterType="bit.edu.user.dto.UserLoginDto" resultType="bit.edu.user.dto.UserDetailsDto">
-        SELECT user_no, user_id
-        FROM User
+        SELECT u.user_no AS userNo, u.user_id AS userId, a.auth_name
+        FROM User AS u
+            INNER JOIN User_Auth AS ua ON u.user_no = ua.user_no
+            INNER JOIN Auth AS a ON ua.auth_no = a.auth_no
         WHERE user_id = #{userId} AND user_pwd = #{userPwd};
     </select>
-
 
 
 

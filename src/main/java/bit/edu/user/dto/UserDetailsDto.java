@@ -1,5 +1,7 @@
 package bit.edu.user.dto;
 
+import bit.edu.auth.Auth;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -16,4 +18,6 @@ import lombok.ToString;
 public class UserDetailsDto {
     private int userNo;
     private String userId;
+
+    private Auth auth;
 }
