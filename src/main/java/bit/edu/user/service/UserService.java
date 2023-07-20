@@ -12,5 +12,5 @@ import java.util.List;
  **/
 public interface UserService {
 
-    List<UserDetailsDto> loginUser(UserLoginDto userLoginDto);
+    UserDetailsDto loginUser(UserLoginDto userLoginDto);
 }

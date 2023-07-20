@@ -182,3 +182,20 @@ ALTER TABLE `User_Auth` ADD CONSTRAINT `FK_User_TO_User_Auth_1` FOREIGN KEY (
     REFERENCES `User` (
                        `user_no`
         );
+
+DROP TABLE IF EXISTS `Upload_File`;
+
+CREATE TABLE `Upload_File` (
+                               `upload_file_no`	int	NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                               `board_no`	int	NOT NULL,
+                               `origin_file_name`	VARCHAR(500)	NOT NULL,
+                               `uuid_file_name`	VARCHAR(500)	NOT NULL,
+                               `file_ extension`	VARCHAR(50)	NOT NULL
+);
+
+ALTER TABLE `Upload_File` ADD CONSTRAINT `FK_Board_TO_Upload_File_1` FOREIGN KEY (
+                                                                                  `board_no`
+    )
+    REFERENCES `Board` (
+                        `board_no`
+        );

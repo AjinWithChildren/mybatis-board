@@ -172,6 +172,8 @@
                 <p class="comment-date">${comment.commentWriteTime}</p>
                 <p class="comment-content">${comment.commentContent}</p>
 
+<%--                <c:if test=""></c:if>--%>
+
                 <c:if test="${comment.userNo == userDetails.userNo}">
                     <div class="comment_change_box">
                         <div class="commentModify">

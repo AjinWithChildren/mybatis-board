@@ -28,7 +28,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public List<UserDetailsDto> loginUser(UserLoginDto userLoginDto) {
-        return userMapper.findUserByUserId(userLoginDto);
+    public UserDetailsDto loginUser(UserLoginDto userLoginDto) {
+        List<UserDetailsDto> userDetailsDtoList = userMapper.findUserByUserId(userLoginDto);
+
+        if (userDetailsDtoList.isEmpty()) {
+            throw new UserNotFountException();
+        }
+
+
+        return userDetailsDtoList.get(1);
     }
+
 }

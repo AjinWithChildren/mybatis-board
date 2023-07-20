@@ -39,9 +39,7 @@ public class UserController {
 
         log.info("userLoginDto {}", userLoginDto);
 
-        List<UserDetailsDto> userDetailsDto = userService.loginUser(userLoginDto);
-
-
+        UserDetailsDto userDetailsDto = userService.loginUser(userLoginDto);
 
         log.info("userDetailsDto {}", userDetailsDto);
         HttpSession session = request.getSession(true);

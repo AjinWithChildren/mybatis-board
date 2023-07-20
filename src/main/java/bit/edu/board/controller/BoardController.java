@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Some description here.
@@ -50,7 +52,9 @@ public class BoardController {
 
 
     @PostMapping("/register")
-    public String boardRegister(@ModelAttribute BoardRegisterDto boardRegisterDto) {
+    public String boardRegister(@ModelAttribute BoardRegisterDto boardRegisterDto,
+                                @RequestParam(value = "uploadFiles", required = false) MultipartFile[] uploadFiles) {
+        log.info("files {}", uploadFiles);
         boardService.createBoard(boardRegisterDto);
         return "redirect:/boards";
     }

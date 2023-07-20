@@ -61,11 +61,12 @@
 <body>
 <div class="container">
     <h1>게시판</h1>
-    <form action="/boards/register" method="post" id="post-form">
+    <form action="/boards/register" method="post" enctype="multipart/form-data" id="post-form">
         <input type="hidden" name="userNo" value="${userDetails.userNo}">
         <input type="hidden" name="userId" value="${userDetails.userId}">
         <input type="text" id="post-title" name="boardTitle" placeholder="제목">
         <textarea id="post-content" name="boardContent" placeholder="내용"></textarea>
+        <input type="file" multiple name="uploadFiles">
         <button type="submit">글 작성</button>
     </form>
     <ul id="post-list"></ul>
